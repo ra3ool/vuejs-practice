@@ -3,6 +3,13 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
+    /* Path Mapping - ADD THESE */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared/*": ["./src/shared/*"]
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
