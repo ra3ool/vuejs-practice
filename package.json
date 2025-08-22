@@ -15,6 +15,9 @@
     "lint:style": "stylelint 'src/**/*.{vue,scss,css}' --fix"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "tailwindcss": "^4.1.12",
+    "tailwindcss-autofill": "^1.0.2",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },
