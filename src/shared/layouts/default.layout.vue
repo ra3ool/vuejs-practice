@@ -13,5 +13,6 @@ defineOptions({
 <style lang="scss" scoped>
 .default-layout {
   display: flex;
+  flex-direction: column;
 }
 </style>
