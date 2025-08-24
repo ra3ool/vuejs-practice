@@ -7,5 +7,3 @@ const Layout = defineAsyncComponent(() => import('@shared/layouts/layout.vue'));
     <RouterView />
   </Layout>
 </template>
-
-<style scoped></style>

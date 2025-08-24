@@ -1,4 +1,7 @@
 <script setup lang="ts">
+defineOptions({
+  name: 'layoutComponent',
+});
 const route = useRoute();
 
 const defaultLayout = 'default';

@@ -2,29 +2,24 @@ import js from '@eslint/js';
 import pluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import autoImportGlobals from './.eslintrc-auto-import.json' assert { type: 'json' };
 
 export default [
-  // Base JavaScript config
   js.configs.recommended,
-
-  // TypeScript configs
   ...tseslint.configs.recommended,
-
-  // Vue configs
   ...pluginVue.configs['flat/essential'],
 
-  // Global configuration
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,vue}'],
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...autoImportGlobals.globals,
       },
     },
   },
 
-  // Vue-specific configuration
   {
     files: ['**/*.vue'],
     languageOptions: {
