@@ -9,3 +9,9 @@ defineOptions({
     <slot />
   </div>
 </template>
+
+<style lang="scss" scoped>
+.default-layout {
+  display: flex;
+}
+</style>
