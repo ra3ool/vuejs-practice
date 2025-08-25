@@ -17,7 +17,8 @@
             "
             class="menu__item-icon"
           /> -->
-          {{ item.label }} {{ isExactActive }}
+          {{ isExactActive ? '' : '' }}
+          {{ item.label }}
         </RouterLink>
 
         <!-- TODO delete after add all panel routes. this is just for visualize items and styling -->
@@ -51,7 +52,7 @@ const isRouteExists = (name) => !!router.hasRoute(name);
 
 <style scoped lang="scss">
 .sidebar {
-  padding: 24px 20px;
+  padding: 24px 0;
   gap: 24px;
   width: 256px;
   height: 100%;
@@ -79,7 +80,6 @@ const isRouteExists = (name) => !!router.hasRoute(name);
     &--active {
       color: var(--color-blue-800);
       background-color: var(--color-blue-100);
-      border-radius: 12px;
     }
   }
 
