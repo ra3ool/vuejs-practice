@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   loading: false,
   type: 'button',
 });
-const emit = defineEmits(['click']);
+const emit = defineEmits<{ (e: 'click'): void }>();
 
 const baseButtonClasses =
   'flex w-full items-center justify-center gap-2 rounded-md font-medium focus:outline-none focus:ring-2 transition-colors duration-200 disabled:cursor-not-allowed cursor-pointer';

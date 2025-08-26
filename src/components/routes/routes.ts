@@ -10,6 +10,11 @@ export const routes = [
         path: '/components/input',
         component: () => import('@/components/views/Input.view.vue'),
       },
+      {
+        name: 'components.button',
+        path: '/components/button',
+        component: () => import('@/components/views/Button.view.vue'),
+      },
     ],
   },
 ];
