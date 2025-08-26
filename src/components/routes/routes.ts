@@ -15,6 +15,11 @@ export const routes = [
         path: '/components/button',
         component: () => import('@/components/views/Button.view.vue'),
       },
+      {
+        name: 'components.toggle',
+        path: '/components/toggle',
+        component: () => import('@/components/views/Toggle.view.vue'),
+      },
     ],
   },
 ];
