@@ -20,6 +20,11 @@ export const routes = [
         path: '/components/toggle',
         component: () => import('@/components/views/Toggle.view.vue'),
       },
+      {
+        name: 'components.expansion-panel',
+        path: '/components/expansion-panel',
+        component: () => import('@/components/views/ExpansionPanel.view.vue'),
+      },
     ],
   },
 ];

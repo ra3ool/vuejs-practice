@@ -44,7 +44,7 @@ const text = ref('');
     />
     <span class="text-gray-900 dark:text-gray-100">{{ text }}</span>
   </div>
-  <div class="mb-12">
+  <div>
     <h3 class="mb-2 font-bold text-gray-900 dark:text-gray-100">
       Custom Input Component with underline style
     </h3>

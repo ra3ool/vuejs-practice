@@ -25,7 +25,7 @@ const toggleActivity = (activeStatus: boolean) => {
       hasBiggerBubble
     />
   </div>
-  <div class="mb-12">
+  <div>
     <h3 class="mb-2 font-bold text-gray-900 dark:text-gray-100">
       toggle with labels
     </h3>
