@@ -25,6 +25,11 @@ export const routes = [
         path: '/components/expansion-panel',
         component: () => import('@/components/views/ExpansionPanel.view.vue'),
       },
+      {
+        name: 'components.dropdown',
+        path: '/components/dropdown',
+        component: () => import('@/components/views/Dropdown.view.vue'),
+      },
     ],
   },
 ];
