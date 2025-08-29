@@ -52,7 +52,7 @@ import { SIDEBAR_ITEMS } from '@shared/constants';
     flex-grow: 1;
     width: 100%;
     background-color: var(--color-neutral-100);
-    padding: space(10);
+    padding: 20px;
   }
 }
 </style>

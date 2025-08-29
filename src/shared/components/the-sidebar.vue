@@ -4,7 +4,7 @@
     <ul class="sidebar__menu menu">
       <li v-for="item in menuItems" :key="item.id" class="menu__item">
         <RouterLink
-          v-if="isRouteExists(item.to)"
+          v-if="$router.hasRoute(item.to)"
           v-slot="{ isExactActive }"
           :to="{ name: item.to }"
           class="menu__link"
@@ -21,7 +21,6 @@
           {{ item.label }}
         </RouterLink>
 
-        <!-- TODO delete after add all panel routes. this is just for visualize items and styling -->
         <span v-else class="menu__link">
           <!-- <InfraSvgLoader
             v-if="item.icon"
@@ -30,7 +29,6 @@
           /> -->
           {{ item.label }}
         </span>
-        <!-- delete after add all panel routes -->
       </li>
     </ul>
   </aside>
@@ -43,11 +41,7 @@ defineProps({
     default: () => [],
   },
 });
-
-//TODO delete after add all panel routes.
-const router = useRouter();
-const isRouteExists = (name) => !!router.hasRoute(name);
-//delete after add all panel routes.
+//TODO consider theme changing
 </script>
 
 <style scoped lang="scss">

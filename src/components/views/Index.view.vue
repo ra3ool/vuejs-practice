@@ -8,7 +8,7 @@ const routes = route.matched[0].children;
 </script>
 
 <template>
-  <div class="components p-4">
+  <div class="components">
     <p>components goes here</p>
     <div class="flex gap-3 my-5">
       <RouterLink
