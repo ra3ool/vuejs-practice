@@ -2,7 +2,8 @@ import Components from 'unplugin-vue-components/vite';
 
 const createComponents = () => {
   return Components({
-    globs: ['src/**/components/**'],
+    globs: ['src/**/components/**/*.vue'],
+    globsExclude: ['src/**/components/**/*.view.vue'],
     dts: 'components.d.ts',
   });
 };
