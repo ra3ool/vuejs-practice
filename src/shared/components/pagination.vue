@@ -13,11 +13,11 @@ const emit = defineEmits<{
 const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
 
 const paginationRange = usePagination({
+  //FIXME will return []
   currentPage: props.currentPage, //TODO make this reactive with computed
   totalItems: props.totalItems,
   itemsPerPage: props.itemsPerPage,
 });
-console.log('paginationRange :', paginationRange.value); //FIXME will return []
 
 function goToPage(page: number) {
   if (page < 1 || page > totalPages || page === props.currentPage) return;

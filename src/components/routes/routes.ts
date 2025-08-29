@@ -30,6 +30,11 @@ export const routes = [
         path: '/components/dropdown',
         component: () => import('@/components/views/Dropdown.view.vue'),
       },
+      {
+        name: 'components.table',
+        path: '/components/table',
+        component: () => import('@/components/views/Table.view.vue'),
+      },
     ],
   },
 ];
