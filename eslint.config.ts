@@ -27,5 +27,16 @@ export default [
         parser: tseslint.parser,
       },
     },
+    rules: {
+      quotes: 'off',
+      'vue/block-order': 'off',
+    },
+  },
+
+  {
+    rules: {
+      'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+      'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    },
   },
 ];
