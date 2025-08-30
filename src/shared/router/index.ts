@@ -1,3 +1,4 @@
+import { routes as authRoutes } from '@/auth/routes';
 import { routes as componentsRoutes } from '@/components/routes';
 import { routes as dashboardRoutes } from '@/dashboard/routes';
 import { createRouter, createWebHistory } from 'vue-router';
@@ -7,12 +8,12 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
       redirect: { name: 'dashboard' },
     },
-    ...playgroundRoute,
-    ...dashboardRoutes,
+    ...authRoutes,
     ...componentsRoutes,
+    ...dashboardRoutes,
+    ...playgroundRoute,
   ],
   history: createWebHistory(),
 });
