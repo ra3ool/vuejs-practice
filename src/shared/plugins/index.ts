@@ -1,12 +1,12 @@
 import type { App } from 'vue';
+import pinia from './pinia';
 import router from './router';
-// import pinia from './pinia';
 // import uiLibrary from './ui-library';
 // import i18n from './i18n';
 
 const plugins = [
   router,
-  // pinia,
+  pinia,
   // uiLibrary,
   // i18n,
 ];
