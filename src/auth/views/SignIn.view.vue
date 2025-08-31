@@ -30,6 +30,7 @@
 <script setup>
 import { useAuthStore } from '@/auth/stores';
 const authStore = useAuthStore();
+const router = useRouter();
 
 //TODO use vee-validate, vue-query, error handling and fixing ui when I have time :)
 // const { handleSubmit, resetField } = useForm();
@@ -50,8 +51,9 @@ const data = reactive({
   password: '',
   remember: false,
 });
-const handleSignin = () => {
-  authStore.login(data);
+const handleSignin = async () => {
+  await authStore.login(data);
+  router.replace({ name: 'dashboard' });
 };
 </script>
 

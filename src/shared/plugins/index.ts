@@ -5,8 +5,8 @@ import router from './router';
 // import i18n from './i18n';
 
 const plugins = [
-  router,
   pinia,
+  router,
   // uiLibrary,
   // i18n,
 ];

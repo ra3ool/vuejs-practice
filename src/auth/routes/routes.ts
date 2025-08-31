@@ -3,6 +3,7 @@ export const routes = [
     name: 'auth',
     path: '/auth',
     component: () => import('@/auth/views/Index.view.vue'),
+    meta: { isGuest: true },
     children: [
       {
         name: 'signin',
