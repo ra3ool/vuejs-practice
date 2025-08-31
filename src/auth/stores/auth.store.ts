@@ -5,10 +5,10 @@ import type {
   RegisterFormData,
   User,
 } from '@/auth/types';
+import { cryptoSerializer } from '@/shared/libs';
 import { defineStore } from 'pinia';
-import { piniaCryptoSerializer } from '../libs';
 
-const storageSecretKey = import.meta.env.VITE_ENCRYPT_STORAGE_KEY;
+const storageSecretKey = import.meta.env.VITE_ENCRYPT_KEY;
 
 export const useAuthStore = defineStore(
   'auth',
@@ -18,9 +18,7 @@ export const useAuthStore = defineStore(
     const loading = ref(false);
 
     // Getters
-    const isAuthenticated = computed(() => {
-      return !!user.value;
-    });
+    const isAuthenticated = computed(() => !!user.value);
 
     // Actions
     const login = async (
@@ -29,13 +27,13 @@ export const useAuthStore = defineStore(
       loading.value = true;
       try {
         const data: LoginResponse = await authService.login(credentials);
-        setLoginData(data);
+        user.value = data.user;
         return data;
       } catch (error: unknown) {
+        //TODO remove try/catch after adding vue-query
         console.error('Login error:', error);
         const errorMessage =
           error instanceof Error ? error.message : 'Login failed';
-        // Return undefined since LoginResponse doesn't have success/error fields
         return errorMessage;
       } finally {
         loading.value = false;
@@ -48,23 +46,16 @@ export const useAuthStore = defineStore(
       loading.value = true;
       try {
         const data: LoginResponse = await authService.register(credentials);
-        setLoginData(data);
+        user.value = data.user;
         return data;
       } catch (error: unknown) {
+        //TODO remove try/catch after adding vue-query
         console.error('Registration error:', error);
         const errorMessage =
           error instanceof Error ? error.message : 'Registration failed';
-        // Return undefined since LoginResponse doesn't have success/error fields
         return errorMessage;
       } finally {
         loading.value = false;
-      }
-    };
-
-    const setLoginData = (data: LoginResponse): void => {
-      if (data.user) {
-        user.value = data.user;
-        // Token is handled by cookies in the service layer
       }
     };
 
@@ -75,9 +66,7 @@ export const useAuthStore = defineStore(
     const getCurrentUser = async (): Promise<User | undefined> => {
       try {
         const userData = await authService.getCurrentUser();
-        if (userData) {
-          user.value = userData;
-        }
+        user.value = userData;
         return userData;
       } catch (error: unknown) {
         console.error('Get current user error:', error);
@@ -91,20 +80,9 @@ export const useAuthStore = defineStore(
         // const response = await authService.logout();
         user.value = null;
         return { status: 'true', message: 'you logged in successfully' };
-      } catch (error: unknown) {
-        user.value = null;
-        const errorMessage =
-          error instanceof Error ? error.message : 'Logout failed';
-        return { status: 'error', message: errorMessage };
       } finally {
         loading.value = false;
       }
-    };
-
-    const restoreAuth = (): void => {
-      // This function can be used to restore auth state if needed
-      // The persist plugin will handle automatic restoration
-      // You can add custom logic here if required
     };
 
     return {
@@ -116,16 +94,14 @@ export const useAuthStore = defineStore(
       // Actions
       login,
       register,
-      setLoginData,
       updateUser,
       getCurrentUser,
       logout,
-      restoreAuth,
     };
   },
   {
     persist: {
-      serializer: piniaCryptoSerializer(storageSecretKey),
+      serializer: cryptoSerializer(storageSecretKey),
       pick: ['user'],
     },
   },
