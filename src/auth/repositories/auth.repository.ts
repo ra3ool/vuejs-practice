@@ -1,29 +1,29 @@
+import { authApi } from '@/auth/client';
 import type {
   LoginRequestPayload,
   LoginResponse,
   registerRequestPayload,
   User,
 } from '@/auth/types';
-import { api } from '@shared/clients';
 
 const authRepository = {
   login: async (payload: LoginRequestPayload): Promise<LoginResponse> => {
-    const response = await api.post('/auth/signin', payload);
+    const response = await authApi.post('/auth/signin', payload);
     return response.data;
   },
 
   register: async (payload: registerRequestPayload): Promise<LoginResponse> => {
-    const response = await api.post('/auth/signup', payload);
+    const response = await authApi.post('/auth/signup', payload);
     return response.data;
   },
 
   getCurrentUser: async (): Promise<User> => {
-    const response = await api.get('/auth/me');
+    const response = await authApi.get('/auth/me');
     return response.data;
   },
 
   logout: async () => {
-    await api.post('/auth/logout');
+    await authApi.post('/auth/logout');
   },
 
   refreshToken: async (refreshToken: string) => {
