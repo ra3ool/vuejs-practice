@@ -1,11 +1,11 @@
 <template>
   <aside class="sidebar">
-    <!-- <InfraSvgLoader class="menu__icon" name="logo-rasam" /> -->
+    <p class="sidebar__title">simple admin panel</p>
     <ul class="sidebar__menu menu">
       <li v-for="item in menuItems" :key="item.id" class="menu__item">
         <RouterLink
           v-if="$router.hasRoute(item.to)"
-          v-slot="{ isExactActive }"
+          v-slot="{ isActive }"
           :to="{ name: item.to }"
           class="menu__link"
           exact-active-class="menu__link--active"
@@ -13,11 +13,11 @@
           <!-- <InfraSvgLoader
             v-if="item.icon"
             :name="
-              isExactActive && item.activeIcon ? item.activeIcon : item.icon
+              isActive && item.activeIcon ? item.activeIcon : item.icon
             "
             class="menu__item-icon"
           /> -->
-          {{ isExactActive ? '' : '' }}
+          {{ isActive ? '>' : '' }}
           {{ item.label }}
         </RouterLink>
 
@@ -46,12 +46,18 @@ defineProps({
 
 <style scoped lang="scss">
 .sidebar {
-  padding: 24px 0;
-  gap: 24px;
   width: 256px;
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  &__title {
+    color: var(--color-lime-800);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-xl);
+    padding-block: 1.25rem;
+    padding-inline: 0.75rem;
+  }
 }
 
 .menu {
@@ -73,7 +79,7 @@ defineProps({
 
     &--active {
       color: var(--color-blue-800);
-      background-color: var(--color-blue-100);
+      background-color: var(--color-lime-300);
     }
   }
 
