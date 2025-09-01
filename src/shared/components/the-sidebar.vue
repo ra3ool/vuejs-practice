@@ -8,7 +8,7 @@
           v-slot="{ isActive }"
           :to="{ name: item.to }"
           class="menu__link"
-          exact-active-class="menu__link--active"
+          active-class="menu__link--active"
         >
           <!-- <InfraSvgLoader
             v-if="item.icon"
@@ -55,14 +55,13 @@ defineProps({
     color: var(--color-lime-800);
     font-weight: var(--font-weight-bold);
     font-size: var(--text-xl);
-    padding-block: 1.25rem;
+    padding-block: 1.125rem;
     padding-inline: 0.75rem;
   }
 }
 
 .menu {
   width: 100%;
-  gap: 12px;
   display: flex;
   flex-direction: column;
 

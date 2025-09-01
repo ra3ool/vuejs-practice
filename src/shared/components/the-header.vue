@@ -3,7 +3,7 @@
     <ProfileWidget :name="username" />
     <CustomDropdown align="right">
       <template #trigger>
-        <CustomButton variant="outline" size="sm">Menu</CustomButton>
+        <CustomButton variant="outline">Menu</CustomButton>
       </template>
       <DropdownItem @click="console.log('profile')">profile</DropdownItem>
       <DropdownItem @click="console.log('settings')">settings</DropdownItem>
