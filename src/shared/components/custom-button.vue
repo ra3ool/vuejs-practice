@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{ (e: 'click'): void }>();
 
 const baseButtonClasses =
-  'flex w-full items-center justify-center gap-2 rounded-md font-medium focus:outline-none focus:ring-2 transition-colors duration-200 disabled:cursor-not-allowed cursor-pointer';
+  'flex items-center justify-center gap-2 rounded-md font-medium focus:outline-none focus:ring-2 transition-colors duration-200 disabled:cursor-not-allowed cursor-pointer';
 const variantsMap = {
   primary:
     'bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500 disabled:bg-indigo-400',

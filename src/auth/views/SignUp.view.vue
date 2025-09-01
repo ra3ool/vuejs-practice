@@ -41,9 +41,8 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '@/auth/stores';
-const authStore = useAuthStore();
-const router = useRouter();
+import { useAuthBridge } from '@shared/bridges';
+const authBridge = useAuthBridge();
 
 //TODO use vee-validate, vue-query, error handling and fixing ui when I have time :)
 
@@ -54,10 +53,7 @@ const data = reactive({
   confirmPassword: '',
   terms: false,
 });
-const handleSignup = async () => {
-  await authStore.register(data);
-  router.replace({ name: 'dashboard' });
-};
+const handleSignup = () => authBridge.register(data);
 </script>
 
 <style lang="scss" scoped>

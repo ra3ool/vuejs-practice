@@ -28,17 +28,15 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '@/auth/stores';
-const authStore = useAuthStore();
-const router = useRouter();
+import { useAuthBridge } from '@shared/bridges';
+const authBridge = useAuthBridge();
 
 //TODO use vee-validate, vue-query, error handling and fixing ui when I have time :)
 // const { handleSubmit, resetField } = useForm();
-// const authStore = useAuthStore();
 
 // const handleLogin = handleSubmit(async (formData) => {
 //   try {
-//     await authStore.login({ formData });
+//     await authBridge.login({ formData });
 //     router.replace({ name: "dashboard" });
 //   } catch (error) {
 //     console.error("An error occurred:", error);
@@ -51,10 +49,7 @@ const data = reactive({
   password: '',
   remember: false,
 });
-const handleSignin = async () => {
-  await authStore.login(data);
-  router.replace({ name: 'dashboard' });
-};
+const handleSignin = () => authBridge.login(data);
 </script>
 
 <style lang="scss" scoped>

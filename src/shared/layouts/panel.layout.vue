@@ -2,10 +2,7 @@
   <div class="panel-layout">
     <TheSidebar :menu-items="SIDEBAR_ITEMS" class="panel-layout__sidebar" />
     <div class="panel-layout__content">
-      <TheHeader
-        class="panel-layout__header"
-        @click:logout="() => console.log(2)"
-      />
+      <TheHeader class="panel-layout__header" />
       <div class="panel-layout__view">
         <RouterView />
       </div>

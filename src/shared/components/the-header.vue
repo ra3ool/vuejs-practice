@@ -1,40 +1,26 @@
 <template>
   <header class="header">
-    <span>dropdown</span>
-    <span>button</span>
-    <!-- <AvatarDropDown
-      :items="dropDownItems"
-      :label="userFullName"
-      @select="handleDropDownSelect"
-    />
-    <BaseButton
-      :disabled="isAuthInUse"
-      class="header__button"
-      prepend-icon="logout"
-      variant="text"
-      @click="logout"
-      >خروج از حساب کاربری</BaseButton
-    > -->
+    <ProfileWidget :name="username" />
+    <CustomDropdown align="right">
+      <template #trigger>
+        <CustomButton variant="outline" size="sm">Menu</CustomButton>
+      </template>
+      <DropdownItem @click="console.log('profile')">profile</DropdownItem>
+      <DropdownItem @click="console.log('settings')">settings</DropdownItem>
+      <DropdownItem @click="logout" class="text-red-500 hover:bg-red-50">
+        logout
+      </DropdownItem>
+    </CustomDropdown>
   </header>
 </template>
 
 <script setup>
+import { useAuthBridge } from '@shared/bridges';
 defineOptions({
   name: 'headerComponent',
 });
-// import { isAuthInUse, userFullName } from '@/shared/bridges';
-// const emit = defineEmits(['click:logout']);
-// const logout = () => emit('click:logout');
-
-// const dropDownItems = [
-//   { id: 1, label: 'نقش ادمین' },
-//   { id: 2, label: 'نقش سوپر ادمین' },
-//   { id: 3, label: 'نقش کارگر ساده' },
-// ];
-
-// const handleDropDownSelect = (data) => {
-//   console.log('data :', data);
-// };
+const { username, logout } = useAuthBridge();
+//TODO add confirmation before logout
 </script>
 
 <style lang="scss" scoped>

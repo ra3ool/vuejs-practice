@@ -1,7 +1,7 @@
 import { routes as authRoutes } from '@/auth/routes';
+import { useAuthStore } from '@/auth/stores';
 import { routes as componentsRoutes } from '@/components/routes';
 import { routes as dashboardRoutes } from '@/dashboard/routes';
-import { useAuthBridge } from '@shared/bridges';
 import { createRouter, createWebHistory } from 'vue-router';
 import { routes as playgroundRoute } from './playground';
 
@@ -20,7 +20,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _from, next) => {
-  const { isAuthenticated } = useAuthBridge();
+  const { isAuthenticated } = useAuthStore();
   if (!to.meta.isGuest && !isAuthenticated) {
     return next({ name: 'signin' });
   }
