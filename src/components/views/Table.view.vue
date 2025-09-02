@@ -4,14 +4,16 @@ defineOptions({
 });
 
 import { useTable } from '@/components/composables';
-import type { TableCell, TableHeader, TableRow } from '@/components/types';
+import type {
+  FetchData,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from '@/components/types';
 import { paginateData } from '@/shared/helpers';
 
 const ITEMS_PER_PAGE = 4;
-const getTableData = (
-  currentPage: number,
-  itemsPerPage: number,
-): Promise<{ result: TableRow[]; totalLength: number }> => {
+const getTableData: FetchData<TableRow> = (currentPage, itemsPerPage) => {
   const items = [
     { id: 1, name: 'Ada Lovelace', email: 'ada.lovelace@example.com' },
     { id: 2, name: 'Alan Turing', email: 'alan.turing@example.com' },
@@ -101,7 +103,7 @@ const onCellClick = (cell: TableCell, row: TableRow) => {
   console.log(cell, row);
 };
 
-const fetchPaginatedData = (page: number, itemsPerPage: number) =>
+const fetchPaginatedData = (page?: number, itemsPerPage?: number) =>
   getTableData(page, itemsPerPage);
 
 const { data: allData, loading: loadingAllData } = useTable({
@@ -118,8 +120,9 @@ const {
 } = useTable({
   fetchData: fetchPaginatedData,
   itemsPerPage: ITEMS_PER_PAGE,
-  isServerSide: true,
+  isServerSidePagination: true,
 });
+
 const clientCurrentPage = ref(1);
 const pagination = reactive({
   currentPage: clientCurrentPage,
@@ -141,7 +144,7 @@ const pagination = reactive({
         rowClass="hover:bg-neutral-100 dark:hover:bg-neutral-700 odd:bg-neutral-100 dark:odd:bg-neutral-900 even:bg-neutral-200 dark:even:bg-neutral-800"
         sort
         @onCellClick="onCellClick"
-        @pageChange="
+        @onPageChange="
           (page) => {
             clientCurrentPage = page;
           }

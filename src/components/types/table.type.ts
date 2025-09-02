@@ -1,5 +1,3 @@
-import type { VNode } from 'vue';
-
 export type TableHeader = {
   key: string;
   value: string;
@@ -44,12 +42,12 @@ export interface CustomTableProps {
 }
 
 export type FetchData<T> = (
-  currentPage: number,
-  itemsPerPage: number,
+  currentPage?: number,
+  itemsPerPage?: number,
 ) => Promise<{ result: T[]; totalLength: number }>;
 
 export interface UseTableOptions<T> {
   fetchData: FetchData<T>;
   itemsPerPage: number;
-  isServerSide?: boolean;
+  isServerSidePagination?: boolean;
 }

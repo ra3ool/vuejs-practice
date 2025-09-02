@@ -7,21 +7,22 @@ import type { PaginationProps } from '@/components/types';
 
 const props = defineProps<PaginationProps>();
 const emit = defineEmits<{
-  (e: 'pageChange', page: number): void;
+  (e: 'onPageChange', page: number): void;
 }>();
 
-const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
+const totalPages = computed(() =>
+  Math.ceil(props.totalItems / props.itemsPerPage),
+);
 
 const paginationRange = usePagination({
-  //FIXME will return []
-  currentPage: props.currentPage, //TODO make this reactive with computed
-  totalItems: props.totalItems,
-  itemsPerPage: props.itemsPerPage,
+  currentPage: computed(() => props.currentPage),
+  totalItems: computed(() => props.totalItems),
+  itemsPerPage: computed(() => props.itemsPerPage),
 });
 
 function goToPage(page: number) {
-  if (page < 1 || page > totalPages || page === props.currentPage) return;
-  emit('pageChange', page);
+  if (page < 1 || page > totalPages.value || page === props.currentPage) return;
+  emit('onPageChange', page);
 }
 
 function buttonClasses(isActive: boolean) {

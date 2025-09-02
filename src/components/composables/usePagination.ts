@@ -12,15 +12,19 @@ export const usePagination = ({
   currentPage,
 }: UsePaginationParams): ComputedRef<(number | string)[]> => {
   return computed(() => {
-    const total = Math.ceil(totalItems / itemsPerPage);
+    const totalItemsValue = unref(totalItems);
+    const itemsPerPageValue = unref(itemsPerPage);
+    const currentPageValue = unref(currentPage);
+
+    const total = Math.ceil(totalItemsValue / itemsPerPageValue);
     const totalPageNumbersToShow = siblingCount + 5;
 
     if (total <= totalPageNumbersToShow) {
       return range(1, total);
     }
 
-    const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
-    const rightSiblingIndex = Math.min(currentPage + siblingCount, total);
+    const leftSiblingIndex = Math.max(currentPageValue - siblingCount, 1);
+    const rightSiblingIndex = Math.min(currentPageValue + siblingCount, total);
 
     const showLeftDots = leftSiblingIndex > 2;
     const showRightDots = rightSiblingIndex < total - 2;

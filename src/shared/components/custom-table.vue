@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<CustomTableProps>(), {
 const emit = defineEmits<{
   (e: 'onRowClick', row: TableRow): void;
   (e: 'onCellClick', cell: TableCell, row: TableRow): void;
-  (e: 'pageChange', page: number): void;
+  (e: 'onPageChange', page: number): void;
 }>();
 
 const sortColumn = ref('');
@@ -31,7 +31,7 @@ const handleSort = (columnKey: string) => {
 };
 
 const handlePageChange = (page: number) => {
-  emit('pageChange', page);
+  emit('onPageChange', page);
 };
 
 const sortedData = computed(() =>
@@ -141,7 +141,7 @@ const isEmpty = computed(() => !props.data || !props.data.length);
       :totalItems="sortedData.length"
       :itemsPerPage="pagination.itemsPerPage"
       :currentPage="pagination.currentPage"
-      @pageChange="handlePageChange"
+      @onPageChange="handlePageChange"
     />
   </div>
 </template>

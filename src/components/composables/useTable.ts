@@ -1,7 +1,11 @@
 import type { TableRow, UseTableOptions } from '../types';
 
 export function useTable<T extends TableRow>(options: UseTableOptions<T>) {
-  const { fetchData, itemsPerPage = 10 } = options;
+  const {
+    fetchData,
+    itemsPerPage = 10,
+    isServerSidePagination = false,
+  } = options;
 
   const data: Ref<T[]> = ref([]);
   const totalLength = ref(0);
@@ -11,7 +15,9 @@ export function useTable<T extends TableRow>(options: UseTableOptions<T>) {
   const handleFetchData = async () => {
     loading.value = true;
     try {
-      const response = await fetchData(currentPage.value, itemsPerPage);
+      const response = isServerSidePagination
+        ? await fetchData(currentPage.value, itemsPerPage)
+        : await fetchData();
       data.value = response.result;
       totalLength.value = response.totalLength;
     } finally {

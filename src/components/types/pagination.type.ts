@@ -1,10 +1,8 @@
-import type { VNode } from 'vue';
-
 export interface UsePaginationParams {
-  totalItems: number;
-  itemsPerPage: number;
+  totalItems: ComputedRef<number> | Ref<number> | number;
+  itemsPerPage: ComputedRef<number> | Ref<number> | number;
+  currentPage: ComputedRef<number> | Ref<number> | number;
   siblingCount?: number;
-  currentPage: number;
 }
 export interface PaginationProps {
   totalItems: number;
